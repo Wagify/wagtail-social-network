@@ -62,3 +62,9 @@ Keyword tags should allow people to explore connections throughout the network a
 This section is intended to collect further ideas that might be out of scope for the initial project.
 
 - membership directory: find members based on location, interests, or other criteria
+
+## Thanks
+
+Thank you to the following people and resources for guiding this project along.
+
+- [LearningDjango](https://learndjango.com/books/)
