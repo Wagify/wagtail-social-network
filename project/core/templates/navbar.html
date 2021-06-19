@@ -11,7 +11,8 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ user.username }}
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                     <li><a class="dropdown-item" href="{% url 'password_reset' %}">Change password</a></li>
                 </ul>
@@ -22,13 +23,7 @@
             <a class="nav-link" href="{% url 'login' %}">Log In</a>
         </li>
         {% endif %}
-      </ul>
-      {% comment %} <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> {% endcomment %}
-
-        
+      </ul>      
     </div>
   </div>
 </nav>
