@@ -13,6 +13,13 @@ class ChaptersIndexPage(Page):
         FieldPanel("introduction"),
     ]
 
+    parent_page_types = [
+        "home.HomePage",
+    ]
+    subpage_types = [
+        "chapters.Chapter"
+    ]
+
 # Create your models here.
 class Chapter(Page):
     class RegionChoices(models.TextChoices):
@@ -36,3 +43,8 @@ class Chapter(Page):
         FieldPanel("introduction", classname="full"),
         FieldPanel("region"),
     ]
+
+    parent_page_types = [
+        "chapters.ChaptersIndexPage",
+    ]
+    subpage_types = []
