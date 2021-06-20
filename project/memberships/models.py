@@ -2,6 +2,9 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
+
+from instance_selector.edit_handlers import InstanceSelectorPanel
 
 class Membership(models.Model):
     class MembershipStatusChoices(models.TextChoices):
@@ -23,3 +26,12 @@ class Membership(models.Model):
         null=True,
         blank=True,
     )
+
+    panels = [
+        InstanceSelectorPanel("user"),
+        PageChooserPanel("chapter"),
+        FieldPanel("status"),
+    ]
+
+    def __str__(self):
+        return f"{ self.user } - { self.chapter } ({ self.status })"
