@@ -24,7 +24,7 @@ class Chapter(Page):
         NORTH_AMERICA = "North America", _("North America")
         SOUTH_AMERICA = "South America", _("South America")
 
-    description = RichTextField()
+    introduction = RichTextField()
     region = models.CharField(
         max_length=32,
         choices=RegionChoices.choices,
@@ -33,6 +33,6 @@ class Chapter(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel("description", classname="full"),
+        FieldPanel("introduction", classname="full"),
         FieldPanel("region"),
     ]
