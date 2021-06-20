@@ -20,6 +20,8 @@ class ChaptersIndexPage(Page):
         "chapters.Chapter"
     ]
 
+    max_count = 1
+
 # Create your models here.
 class Chapter(Page):
     class RegionChoices(models.TextChoices):
