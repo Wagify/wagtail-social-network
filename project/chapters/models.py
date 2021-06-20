@@ -5,6 +5,14 @@ from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 
+
+class ChaptersIndexPage(Page):
+    introduction = RichTextField()
+
+    content_panels = Page.content_panels + [
+        FieldPanel("introduction"),
+    ]
+
 # Create your models here.
 class Chapter(Page):
     class RegionChoices(models.TextChoices):
