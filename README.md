@@ -68,3 +68,4 @@ This section is intended to collect further ideas that might be out of scope for
 Thank you to the following people and resources for guiding this project along.
 
 - [LearningDjango](https://learndjango.com/books/)
+- [simple is better than complex](https://simpleisbetterthancomplex.com/)
