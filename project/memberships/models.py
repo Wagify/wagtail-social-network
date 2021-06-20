@@ -27,6 +27,9 @@ class Membership(models.Model):
         blank=True,
     )
 
+    class Meta:
+        unique_together = ["user", "chapter"]
+
     panels = [
         InstanceSelectorPanel("user"),
         PageChooserPanel("chapter"),
