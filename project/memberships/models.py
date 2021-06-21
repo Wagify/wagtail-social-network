@@ -4,8 +4,6 @@ from django.utils.translation import gettext_lazy as _
 
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 
-from instance_selector.edit_handlers import InstanceSelectorPanel
-
 class Membership(models.Model):
     class MembershipStatusChoices(models.TextChoices):
         PENDING = "Pending", _("Pending")
@@ -31,7 +29,7 @@ class Membership(models.Model):
         unique_together = ["user", "chapter"]
 
     panels = [
-        InstanceSelectorPanel("user"),
+        FieldPanel("user"),
         PageChooserPanel("chapter"),
         FieldPanel("status"),
     ]

@@ -45,7 +45,6 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
-    'instance_selector',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -135,8 +134,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

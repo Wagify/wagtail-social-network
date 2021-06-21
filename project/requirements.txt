@@ -25,7 +25,6 @@ tablib==3.0.0
 telepath==0.2
 urllib3==1.26.5
 wagtail==2.13.2
-wagtail-instance-selector==2.1.1
 webencodings==0.5.1
 Willow==1.4
 xlrd==2.0.1
