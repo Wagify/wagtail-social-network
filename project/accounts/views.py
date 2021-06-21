@@ -10,4 +10,3 @@ class UserChooserViewSet(ModelChooserViewSet):
     page_title =  _("Choose a person")
     per_page = 10
     order_by = ("last_name", "first_name")
-    fields = ("first_name", "last_name", "username",)
