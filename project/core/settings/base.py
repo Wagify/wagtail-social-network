@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'wagtail.core',
     'wagtail.contrib.modeladmin',
 
+    'generic_chooser',
     'modelcluster',
     'taggit',
 
