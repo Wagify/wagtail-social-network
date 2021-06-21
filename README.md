@@ -5,7 +5,7 @@
 
 Social networking site built with Wagtail CMS
 
-All contributions are welcome! Please see the [contributing guide](CONTRIBUTING.md) for more details on how to contribute.
+All contributors are welcome! Please see the [contributing guide](CONTRIBUTING.md) for more details on how to contribute.
 
 ## Project scope
 
