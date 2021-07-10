@@ -10,15 +10,13 @@
 {{ page.introduction | richtext }}
 
 {% regroup chapters by region as chapters_by_region %}
-<ul>
-    {% for chapters in chapters_by_region %}
-        <li>{{ chapters.grouper }}</li>
-        <ul>
-            {% for chapter in chapters.list %}
-                <li>{{ chapter }}</li>
-            {% endfor %}
-        </ul>
-    {% endfor %}
-</ul>
+{% for chapters in chapters_by_region %}
+    <h3>{{ chapters.grouper }}</h3>
+    <ul>
+        {% for chapter in chapters.list %}
+            <li><a href="{% pageurl chapter %}">{{ chapter }}</a></li>
+        {% endfor %}
+    </ul>
+{% endfor %}
 
 {% endblock content %}
