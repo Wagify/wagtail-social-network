@@ -20,7 +20,7 @@
                 <p class="card-text mt-3" id="collapse_{{ chapters.grouper }}">
                     <div class="list-group">
                         {% for chapter in chapters.list %}
-                            <a class="list-group-item list-group-item-action" href="{% pageurl chapter %}">{{ chapter }}</a>
+                            <a class="list-group-item list-group-item-action list-group-item-primary" href="{% pageurl chapter %}">{{ chapter }}</a>
                         {% endfor %}
                     </div>
                 </p>
