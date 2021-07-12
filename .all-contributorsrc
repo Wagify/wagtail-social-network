@@ -13,6 +13,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "sp35",
+      "name": "Shubham Pandey",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51958314?v=4",
+      "profile": "http://sp35.github.io/",
+      "contributions": [
+        "code",
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
