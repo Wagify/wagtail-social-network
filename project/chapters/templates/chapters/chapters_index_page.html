@@ -8,4 +8,26 @@
 <h1>{{ page.title }}</h1>
 
 {{ page.introduction | richtext }}
+
+{% regroup chapters by region as chapters_by_region %}
+
+<div class="row mt-5">
+    {% for chapters in chapters_by_region %}
+    <div class="col">
+        <div class="card mb-5" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ chapters.grouper }}</h5>
+                <p class="card-text mt-3" id="collapse_{{ chapters.grouper }}">
+                    <div class="list-group">
+                        {% for chapter in chapters.list %}
+                            <a class="list-group-item list-group-item-action list-group-item-primary" href="{% pageurl chapter %}">{{ chapter }}</a>
+                        {% endfor %}
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock content %}

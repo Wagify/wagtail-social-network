@@ -6,6 +6,7 @@ from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 
 
+# Create your models here.
 class ChaptersIndexPage(Page):
     introduction = RichTextField()
 
@@ -22,7 +23,15 @@ class ChaptersIndexPage(Page):
 
     max_count = 1
 
-# Create your models here.
+    def get_context(self, request):
+        """
+        return a Queryset of Chapters
+        """
+        context = super().get_context(request)
+        context['chapters'] = Chapter.objects.child_of(self).live()
+        return context
+
+
 class Chapter(Page):
     class RegionChoices(models.TextChoices):
         AFRICA = "Africa", _("Africa")
