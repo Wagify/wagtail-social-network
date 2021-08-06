@@ -23,6 +23,15 @@
         "code",
         "design"
       ]
+    },
+    {
+      "login": "FatalTrip",
+      "name": "FatalTrip",
+      "avatar_url": "https://avatars.githubusercontent.com/u/76202685?v=4",
+      "profile": "https://github.com/FatalTrip",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
