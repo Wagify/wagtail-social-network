@@ -9,5 +9,12 @@
 <p>Welcome to Wagtail Social.</p>
 
 <div class="intro">{{ page.intro }}</div>
+{% for invite_friend in invite_friends %}
+    {% with invite_friend=invite_friend.specific %}
+        <div style="text-align: right;">
+            <h4><a href="{% pageurl invite_friend %}">{{ invite_friend.title }}</a></h4>
+        </div>
+    {% endwith %}
+{% endfor %}
 
 {% endblock content %}
