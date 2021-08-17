@@ -42,10 +42,10 @@ class InviteFriendsPage(Page):
         if request.method == 'POST':
             form = FriendInvitationForm(request.POST)
             if form.is_valid():
-                friend_invite = form.save()
+                # friend_invite = form.save()
                 return render(request, 'home/thankyou.html', {
                     'page': self,
-                    'flavour': friend_invite,
+                    # 'flavour': friend_invite,
                 })
         else:
             form = FriendInvitationForm()
