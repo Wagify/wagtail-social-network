@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>invite friends</title>
-</head>
-<body>
-    <h1> Invite Friends Here</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+
+    {{ page.intro | richtext }}
+
+    <form action="." method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <p><input type="submit" value="Send Invitation Now!"></p>
+    </form>
+{% endblock %}
