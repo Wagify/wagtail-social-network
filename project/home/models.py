@@ -5,6 +5,7 @@ from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.fields import RichTextField
 
 from django.shortcuts import render
+import invitations.utils
 
 
 class HomePage(Page):
@@ -37,18 +38,20 @@ class InviteFriendsPage(Page):
     ]
 
     def serve(self, request):
-        from home.forms import FriendInvitationForm
+        # from home.forms import FriendInvitationForm
 
         if request.method == 'POST':
-            form = FriendInvitationForm(request.POST)
-            if form.is_valid():
-                # friend_invite = form.save()
-                return render(request, 'home/thankyou.html', {
+            # form = FriendInvitationForm(request.POST)
+            print(request.POST.get("email"))
+            form = invitations.utils.get_invite_form()()
+            invite_obj = form.save(email = request.POST.get("email"))
+            invite_obj.send_invitation(request)
+            return render(request, 'home/thankyou.html', {
                     'page': self,
                     # 'flavour': friend_invite,
                 })
         else:
-            form = FriendInvitationForm()
+            form = invitations.utils.get_invite_form()
 
         return render(request, 'home/invite_friends.html', {
             'page': self,
