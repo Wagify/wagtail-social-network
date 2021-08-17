@@ -38,11 +38,8 @@ class InviteFriendsPage(Page):
     ]
 
     def serve(self, request):
-        # from home.forms import FriendInvitationForm
 
         if request.method == 'POST':
-            # form = FriendInvitationForm(request.POST)
-            print(request.POST.get("email"))
             form = invitations.utils.get_invite_form()()
             invite_obj = form.save(email = request.POST.get("email"))
             invite_obj.send_invitation(request)
