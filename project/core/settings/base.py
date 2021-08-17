@@ -175,3 +175,10 @@ AUTH_USER_MODEL = 'accounts.User'
 
 WAGTAIL_USER_EDIT_FORM = 'accounts.forms.CustomUserEditForm'
 WAGTAIL_USER_CREATION_FORM = 'accounts.forms.CustomUserCreationForm'
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=''
+EMAIL_HOST_PASSWORD=''

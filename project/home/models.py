@@ -40,8 +40,15 @@ class InviteFriendsPage(Page):
     def serve(self, request):
 
         if request.method == 'POST':
-            form = invitations.utils.get_invite_form()()
-            invite_obj = form.save(email = request.POST.get("email"))
+            Invitations = invitations.utils.get_invitation_model()
+            try:
+                invite_obj = Invitations.objects.get(email = request.POST.get("email"))
+                print(invite_obj.email)
+            except Invitations.DoesNotExist:
+                print("Exception")
+                form = invitations.utils.get_invite_form()()
+                invite_obj = form.save(email = request.POST.get("email"))
+                print(invite_obj.email)
             invite_obj.send_invitation(request)
             return render(request, 'home/thankyou.html', {
                     'page': self,
