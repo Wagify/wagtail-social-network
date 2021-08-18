@@ -12,7 +12,7 @@
 {% for invite_friend in invite_friends %}
     {% with invite_friend=invite_friend.specific %}
         <div style="text-align: right;">
-            <h4><a href="{% pageurl invite_friend %}">{{ invite_friend.title }}</a></h4>
+            <h2><a href="{% pageurl invite_friend %}">{{ invite_friend.title }}</a></h2>
         </div>
     {% endwith %}
 {% endfor %}
