@@ -6,12 +6,35 @@
 
     {{ page.intro | richtext }}
 
-    <form action="." method="POST">
-        {% csrf_token %}
-
-        {{ form.as_p }}
-
-        <p><input type="submit" value="Send Invitation Now!"></p>
+    <form class="form-horizontal" method="post">{% csrf_token %}
+        <fieldset>
+            {% for field in form %}
+                {% if field.errors %}
+                    <div class="control-group error">
+                        <label class="control-label">{{ field.label }}</label>
+                        <div class="controls">{{ field }}
+                            <span class="help-inline">
+                                {% for error in  field.errors %}{{ error }}{% endfor %}
+                            </span>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="control-group">
+                        <label class="control-label">{{ field.label }}</label>
+                        <div class="controls">{{ field }}
+                            {% if field.help_text %}
+                                <p class="help-inline"><small>{{ field.help_text }}</small></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </fieldset>
+        <p>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" value="Send Invitation Now!">Submit</button>
+            </div>
+        </p>
     </form>
     <p><a href="{{ page.get_parent.url }}">Return to home</a></p>
 {% endblock %}
