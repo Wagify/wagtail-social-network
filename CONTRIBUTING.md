@@ -85,20 +85,38 @@ From there, you should be able to access the project at [localhost:8000](http://
 
 We currently have some development settings contained in `core.settings.dev`. However, those settings are not used when running `python manage.py runserver`
 
-You can use it by changing the `manage.py` file in `project` directory and `wsgi.py` in `project/core` directory.
+You can change to your preferred settings in two ways:
 
-All you have to do is change 
+1. By using the `--settings` flag while running the server
 
+You have to:
+`python manage.py runserver --settings=core.settings.<your preferred settings>`
+
+Eg:
 ```py
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.dev")
+python manage.py runserver --settings=core.settings.base
 ```
 
-To the setting you want to use, i.e:
+Or:
 ```py
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.base")
+python manage.py runserver --settings=core.settings.dev 
 ```
 
-or
+Or:
 ```py
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.production")
+python manage.py runserver --settings=core.settings.production 
+```
+
+2. By setting environment variables:
+
+-In UNIX BASH Shell:
+```sh
+export DJANGO_SETTINGS_MODULE=core.settings.<your preferred settings>
+python manage.py runserver
+```
+
+-In Windows Shell:
+```cmd
+set DJANGO_SETTINGS_MODULE=core.settings.<your preferred settings>
+python manage.py runserver
 ```
