@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'chapters',
     'home',
     'search',
+    'invite',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
