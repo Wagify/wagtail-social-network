@@ -2,6 +2,6 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-    <h1> Thanks for inviting!</h1>
-    <p><a href="{{ page.get_parent.url }}">Return to home</a></p>
+    <h1> {{ page.thankyou_page_title }}</h1>
+    <p><a href="{{ page.get_parent.url }}">Return to {{ page.get_parent.title }} Page</a></p>
 {% endblock %}

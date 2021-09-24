@@ -15,6 +15,6 @@ class HomePage(Page):
 
     def get_context(self,request):
         context = super().get_context(request)
-        context['invite_friends'] = self.get_children().type(InviteFriendsPage)
+        context['invite_friends_page'] = InviteFriendsPage.objects.get()
         print(context)
         return context
