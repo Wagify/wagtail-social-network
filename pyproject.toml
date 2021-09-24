@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "wagtail-social-network"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+Django = ">=3.2, <3.3"
+wagtail = ">=2.13, <2.14"
+django-invitations = "1.9.3"
+
+[tool.poetry.dev-dependencies]
+black = "^21.9b0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
