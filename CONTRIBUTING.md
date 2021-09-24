@@ -23,9 +23,13 @@ For the Git instructions,
 3) clone the repository into a local folder
 
 E.g.
-
+Using SSH:
 ```sh
 git clone git@github.com:brylie/wagtail-social-network.git
+```
+Using HTTPS:
+```sh
+git clone https://github.com/brylie/wagtail-social-network.git
 ```
 
 ### Create a virtual environment
@@ -76,3 +80,43 @@ python manage.py runserver
 ```
 
 From there, you should be able to access the project at [localhost:8000](http://localhost:8000)
+
+### Using the DJANGO_SETTINGS_MODULE
+
+We currently have some development settings contained in `core.settings.dev`. However, those settings are not used when running `python manage.py runserver`
+
+You can change to your preferred settings in two ways:
+
+1. By using the `--settings` flag while running the server
+
+You have to:
+`python manage.py runserver --settings=core.settings.<your preferred settings>`
+
+Eg:
+```py
+python manage.py runserver --settings=core.settings.base
+```
+
+Or:
+```py
+python manage.py runserver --settings=core.settings.dev 
+```
+
+Or:
+```py
+python manage.py runserver --settings=core.settings.production 
+```
+
+2. By setting environment variables:
+
+-In UNIX BASH Shell:
+```sh
+export DJANGO_SETTINGS_MODULE=core.settings.<your preferred settings>
+python manage.py runserver
+```
+
+-In Windows Shell:
+```cmd
+set DJANGO_SETTINGS_MODULE=core.settings.<your preferred settings>
+python manage.py runserver
+```
