@@ -27,7 +27,9 @@ INSTALLED_APPS = [
     'accounts',
     'chapters',
     'home',
+    'invites',
     'search',
+
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'invitations',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,7 +54,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites'
 ]
+
+SITE_ID = 1
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -170,3 +177,10 @@ AUTH_USER_MODEL = 'accounts.User'
 
 WAGTAIL_USER_EDIT_FORM = 'accounts.forms.CustomUserEditForm'
 WAGTAIL_USER_CREATION_FORM = 'accounts.forms.CustomUserCreationForm'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=''
+EMAIL_HOST_PASSWORD=''

@@ -17,6 +17,8 @@ urlpatterns = [
 
     path('search/', search_views.search, name='search'),
 
+    path('invitations/', include('invitations.urls', namespace='invitations')),
+
 ]
 
 
