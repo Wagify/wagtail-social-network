@@ -32,6 +32,15 @@ class ChaptersIndexPage(Page):
         return context
 
 
+class Groups(Page):
+    class Choices(models.TextChoices):
+        pass
+    introduction = RichTextField()
+
+    content_panels = Page.content_panels + [
+        FieldPanel("introduction", classname="full"),
+    ]
+
 class Chapter(Page):
     class RegionChoices(models.TextChoices):
         AFRICA = "Africa", _("Africa")
