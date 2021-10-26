@@ -2,8 +2,10 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.core.fields import RichTextField
+from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
+from wagtail.core.blocks import RichTextBlock, TextBlock
+from wagtail.admin.edit_handlers import StreamFieldPanel
 
 
 # Create your models here.
@@ -33,16 +35,20 @@ class ChaptersIndexPage(Page):
 
 
 class Groups(Page):
-    class Choices(models.TextChoices):
-        pass
-    introduction = RichTextField()
+    body = StreamField([
+        ("introduction",RichTextBlock(required=False)),
+        ("description",TextBlock(required=False))
+        ])
 
     content_panels = Page.content_panels + [
-        FieldPanel("introduction", classname="full"),
+        StreamFieldPanel("body", classname="full"),
     ]
 
+    class Meta:
+        abstract=True
+
 class Chapter(Groups):
-    class RegionChoices(Groups.Choices):
+    class RegionChoices(models.TextChoices):
         AFRICA = "Africa", _("Africa")
         ANTARCTICA = "Antarctica", _("Antarctica")
         ASIA = "Asia", _("Asia")
