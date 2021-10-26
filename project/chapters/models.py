@@ -41,8 +41,8 @@ class Groups(Page):
         FieldPanel("introduction", classname="full"),
     ]
 
-class Chapter(Page):
-    class RegionChoices(models.TextChoices):
+class Chapter(Groups):
+    class RegionChoices(Groups.Choices):
         AFRICA = "Africa", _("Africa")
         ANTARCTICA = "Antarctica", _("Antarctica")
         ASIA = "Asia", _("Asia")
@@ -51,7 +51,6 @@ class Chapter(Page):
         NORTH_AMERICA = "North America", _("North America")
         SOUTH_AMERICA = "South America", _("South America")
 
-    introduction = RichTextField()
     region = models.CharField(
         max_length=32,
         choices=RegionChoices.choices,
@@ -59,8 +58,7 @@ class Chapter(Page):
         blank=True,
     )
 
-    content_panels = Page.content_panels + [
-        FieldPanel("introduction", classname="full"),
+    content_panels = Groups.content_panels + [
         FieldPanel("region"),
     ]
 
