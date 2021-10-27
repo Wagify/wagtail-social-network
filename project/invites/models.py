@@ -7,6 +7,8 @@ from wagtail.core.fields import RichTextField
 from django.shortcuts import render
 import invitations.utils
 
+from django.utils.translation import gettext
+
 # Create your models here.
 class FriendInvitation(models.Model):
     email = models.EmailField(max_length=254, blank=True, default=None)
@@ -18,7 +20,7 @@ class InviteFriendsPage(Page):
     intro = RichTextField(blank=True, null=True, default="")
     thankyou_page_title = models.CharField(
         max_length=255,
-        help_text="Title text to use for the 'thank you' page",
+        help_text=gettext("Title text to use for the 'thank you' page"),
         blank=True,
     )
 
