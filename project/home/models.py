@@ -7,6 +7,8 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 from invites.models import InviteFriendsPage
 
+from django.utils.translation import gettext
+
 
 class HomePage(Page):
     intro = models.CharField(max_length=250, default="Introduction Line")

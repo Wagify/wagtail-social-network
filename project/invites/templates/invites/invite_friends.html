@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
+{% load i18n %}
 
 {% block content %}
     <h1>{{ page.title }}</h1>
@@ -32,9 +33,9 @@
         </fieldset>
         <p>
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary" value="Send Invitation Now!">Submit</button>
+                <button type="submit" class="btn btn-primary" value="Send Invitation Now!">{% translate "Submit" %}</button>
             </div>
         </p>
     </form>
-    <p><a href="{{ page.get_parent.url }}">Return to {{ page.get_parent.title }} Page </a></p>
+    <p><a href="{{ page.get_parent.url }}">{% translate "Return to" %} {{ page.get_parent.title }} {% translate "Page" %} </a></p>
 {% endblock %}

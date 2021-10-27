@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
+{% load i18n %}
 
 {% block content %}
-    <h1> Thanks for inviting!</h1>
-    <p><a href="{{ page.get_parent.url }}">Return to home</a></p>
+    <h1> {% translate "Thanks for inviting!" %}</h1>
+    <p><a href="{{ page.get_parent.url }}">{% translate "Return to home" %}</a></p>
 {% endblock %}

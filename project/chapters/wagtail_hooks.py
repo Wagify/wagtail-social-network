@@ -4,10 +4,12 @@ from wagtail.contrib.modeladmin.options import (
 )
 from .models import Chapter
 
+from django.utils.translation import gettext
+
 
 class ChapterAdmin(ModelAdmin):
     model = Chapter
-    menu_label = "Chapters"
+    menu_label = gettext("Chapters")
     menu_icon = "group"
     menu_order = 200
     add_to_settings_menu = False
