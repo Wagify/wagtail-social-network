@@ -8,7 +8,7 @@ from django.utils.translation import gettext
 
 
 class HomePage(Page):
-    intro = models.CharField(max_length=250,default=gettext("Introduction Line"))
+    intro = models.CharField(max_length=250,default="Introduction Line")
     max_count = 1
 
     content_panels = Page.content_panels + [
