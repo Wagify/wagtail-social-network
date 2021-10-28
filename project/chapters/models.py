@@ -7,6 +7,8 @@ from wagtail.core.models import Page
 from wagtail.core.blocks import RichTextBlock, TextBlock
 from wagtail.admin.edit_handlers import StreamFieldPanel
 
+from accounts.models import User
+
 
 # Create your models here.
 class ChaptersIndexPage(Page):
@@ -38,6 +40,8 @@ class Groups(Page):
     content_panels = Page.content_panels + [
         FieldPanel("introduction", classname="full"),
     ]
+
+    members = models.ManyToManyField(User,blank=True)
 
     class Meta:
         abstract = True
