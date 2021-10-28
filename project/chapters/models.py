@@ -30,7 +30,7 @@ class ChaptersIndexPage(Page):
         return a Queryset of Chapters
         """
         context = super().get_context(request)
-        context["chapters"] = Chapter.objects.child_of(self).live()
+        context["chapters"] = Chapter.objects.child_of(self).live().order_by("region","title")
         return context
 
 
