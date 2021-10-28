@@ -19,9 +19,7 @@ class ChaptersIndexPage(Page):
     parent_page_types = [
         "home.HomePage",
     ]
-    subpage_types = [
-        "chapters.Chapter"
-    ]
+    subpage_types = ["chapters.Chapter"]
 
     max_count = 1
 
@@ -30,22 +28,20 @@ class ChaptersIndexPage(Page):
         return a Queryset of Chapters
         """
         context = super().get_context(request)
-        context['chapters'] = Chapter.objects.child_of(self).live()
+        context["chapters"] = Chapter.objects.child_of(self).live()
         return context
 
 
 class Groups(Page):
-    body = StreamField([
-        ("introduction",RichTextBlock(required=False)),
-        ("description",TextBlock(required=False))
-        ])
+    introduction = RichTextField()
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel("body", classname="full"),
+        FieldPanel("introduction", classname="full"),
     ]
 
     class Meta:
-        abstract=True
+        abstract = True
+
 
 class Chapter(Groups):
     class RegionChoices(models.TextChoices):
