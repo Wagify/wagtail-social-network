@@ -6,6 +6,7 @@ from wagtail.core import blocks
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 from invites.models import InviteFriendsPage
+from chapters.models import ChaptersIndexPage
 
 
 class HomePage(Page):
@@ -28,5 +29,5 @@ class HomePage(Page):
     def get_context(self, request):
         context = super().get_context(request)
         context["invite_friends_page"] = InviteFriendsPage.objects.get()
-        print(context)
+        context["chapters_index_page"] = ChaptersIndexPage.objects.get()
         return context
