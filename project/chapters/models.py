@@ -46,6 +46,25 @@ class Groups(Page):
     class Meta:
         abstract = True
 
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        if request.user in self.members.all():
+            context["member"] = True
+        else:
+            context["member"] = False
+        return context
+
+    def serve(self, request, *args, **kwargs):
+        if request.GET.get("join","False").lower() == "true":
+            # Later on can add code to get admin approval to join group --------
+            self.members.add(request.user)
+
+
+        if request.GET.get("leave","False").lower() == "true":
+            self.members.remove(request.user)
+
+        return super().serve(request, *args, **kwargs)
+
 
 class Chapter(Groups):
     class RegionChoices(models.TextChoices):
