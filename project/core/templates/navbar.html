@@ -1,6 +1,8 @@
+{% load i18n %}
+
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Wagtail Social</a>
+    <a class="navbar-brand" href="#">{% translate "Wagtail Social" %}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,14 +15,14 @@
                 </a>
                 
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
-                    <li><a class="dropdown-item" href="{% url 'password_reset' %}">Change password</a></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">{% translate "Log Out" %}</a></li>
+                    <li><a class="dropdown-item" href="{% url 'password_reset' %}">{% translate "Change password" %}</a></li>
                 </ul>
             </li>
             
         {% else %}
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+            <a class="nav-link" href="{% url 'login' %}">{% translate "Log In" %}</a>
         </li>
         {% endif %}
       </ul>      
