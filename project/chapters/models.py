@@ -50,6 +50,11 @@ class Groups(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
+        '''
+        If user is a member display the greyed out button using
+        the "context.member" variable, else display blue button
+        for joining group
+        '''
         if request.user in self.members.all():
             context["member"] = True
         else:
@@ -57,10 +62,12 @@ class Groups(Page):
         return context
 
     def serve(self, request, *args, **kwargs):
+        # If query argument "join" is passed as true then add member
         if request.GET.get("join", "False").lower() == "true":
             # Later on can add code to get admin approval to join group --------
             self.members.add(request.user)
 
+        # If query argument "leave" is passed as true then remove member
         if request.GET.get("leave", "False").lower() == "true":
             self.members.remove(request.user)
 

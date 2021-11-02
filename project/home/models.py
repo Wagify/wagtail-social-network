@@ -30,6 +30,7 @@ class HomePage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
+        # Get Respective page objects in context for redirection and links
         context["invite_friends_page"] = InviteFriendsPage.objects.get()
         context["chapters_index_page"] = ChaptersIndexPage.objects.get()
         return context
