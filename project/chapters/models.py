@@ -30,7 +30,9 @@ class ChaptersIndexPage(Page):
         return a Queryset of Chapters
         """
         context = super().get_context(request)
-        context["chapters"] = Chapter.objects.child_of(self).live().order_by("region","title")
+        context["chapters"] = (
+            Chapter.objects.child_of(self).live().order_by("region", "title")
+        )
         return context
 
 
@@ -41,7 +43,7 @@ class Groups(Page):
         FieldPanel("introduction", classname="full"),
     ]
 
-    members = models.ManyToManyField(User,blank=True)
+    members = models.ManyToManyField(User, blank=True)
 
     class Meta:
         abstract = True
@@ -55,12 +57,11 @@ class Groups(Page):
         return context
 
     def serve(self, request, *args, **kwargs):
-        if request.GET.get("join","False").lower() == "true":
+        if request.GET.get("join", "False").lower() == "true":
             # Later on can add code to get admin approval to join group --------
             self.members.add(request.user)
 
-
-        if request.GET.get("leave","False").lower() == "true":
+        if request.GET.get("leave", "False").lower() == "true":
             self.members.remove(request.user)
 
         return super().serve(request, *args, **kwargs)
