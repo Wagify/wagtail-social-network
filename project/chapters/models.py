@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.shortcuts import redirect
 
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.fields import RichTextField, StreamField
@@ -8,6 +9,7 @@ from wagtail.core.blocks import RichTextBlock, TextBlock
 from wagtail.admin.edit_handlers import StreamFieldPanel
 
 from accounts.models import User
+from .forms import GroupMembershipForm
 
 
 # Create your models here.
@@ -63,13 +65,20 @@ class Groups(Page):
 
     def serve(self, request, *args, **kwargs):
         # If query argument "join" is passed as true then add member
-        if request.GET.get("join", "False").lower() == "true":
-            # Later on can add code to get admin approval to join group --------
-            self.members.add(request.user)
+        if request.method == 'POST':
+            # create a form instance and populate it with data from the request:
+            form = GroupMembershipForm(request.POST)
+            # check whether it's valid:
+            if form.is_valid():
+                if request.user.is_authenticated:
+                    membership_action = form.cleaned_data.get("membership_action")
+                    if membership_action == "join":
+                        self.members.add(request.user)
+                    elif membership_action == "leave":
+                        self.members.remove(request.user)
+                else:
+                    return redirect("login")
 
-        # If query argument "leave" is passed as true then remove member
-        if request.GET.get("leave", "False").lower() == "true":
-            self.members.remove(request.user)
 
         return super().serve(request, *args, **kwargs)
 
