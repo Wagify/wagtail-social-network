@@ -13,7 +13,8 @@ from .forms import GroupMembershipForm
 
 
 # Create your models here.
-class ChaptersIndexPage(Page):
+
+class GroupsIndexPage(Page):
     introduction = RichTextField()
 
     content_panels = Page.content_panels + [
@@ -23,22 +24,36 @@ class ChaptersIndexPage(Page):
     parent_page_types = [
         "home.HomePage",
     ]
-    subpage_types = ["chapters.Chapter"]
+
+    subpage_types = []
 
     max_count = 1
 
+    additional_context = "groups"
+    context_order = ("title",)
+
+    class Meta:
+        abstract = True
+
     def get_context(self, request):
         """
-        return a Queryset of Chapters
+        return a Queryset of Groups
         """
         context = super().get_context(request)
-        context["chapters"] = (
-            Chapter.objects.child_of(self).live().order_by("region", "title")
+        context[self.additional_context] = (
+            Chapter.objects.child_of(self).live().order_by(*self.context_order)
         )
         return context
 
 
-class Groups(Page):
+
+class ChaptersIndexPage(GroupsIndexPage):
+    subpage_types = ['chapters.Chapter']
+    additional_context = "chapters"
+    context_order = ("region","title")
+
+
+class Group(Page):
     introduction = RichTextField()
 
     content_panels = Page.content_panels + [
@@ -82,7 +97,7 @@ class Groups(Page):
         return super().serve(request, *args, **kwargs)
 
 
-class Chapter(Groups):
+class Chapter(Group):
     class RegionChoices(models.TextChoices):
         AFRICA = "Africa", _("Africa")
         ANTARCTICA = "Antarctica", _("Antarctica")
@@ -99,7 +114,7 @@ class Chapter(Groups):
         blank=True,
     )
 
-    content_panels = Groups.content_panels + [
+    content_panels = Group.content_panels + [
         FieldPanel("region"),
     ]
 
