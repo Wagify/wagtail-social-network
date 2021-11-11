@@ -77,11 +77,10 @@ class Group(Page):
         return context
 
     def serve(self, request, *args, **kwargs):
-        # If query argument "join" is passed as true then add member
         if request.method == "POST":
             # create a form instance and populate it with data from the request:
             form = GroupMembershipForm(request.POST)
-            # check whether it's valid:
+
             if form.is_valid():
                 if request.user.is_authenticated:
                     membership_action = form.cleaned_data.get("membership_action")
