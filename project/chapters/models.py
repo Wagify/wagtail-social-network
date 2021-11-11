@@ -82,14 +82,11 @@ class Group(Page):
             form = GroupMembershipForm(request.POST)
 
             if form.is_valid():
-                if request.user.is_authenticated:
-                    membership_action = form.cleaned_data.get("membership_action")
-                    if membership_action == "join":
-                        self.members.add(request.user)
-                    elif membership_action == "leave":
-                        self.members.remove(request.user)
-                else:
-                    return redirect("login")
+                membership_action = form.cleaned_data.get("membership_action")
+                if membership_action == "join":
+                    self.members.add(request.user)
+                elif membership_action == "leave":
+                    self.members.remove(request.user)
 
         return super().serve(request, *args, **kwargs)
 
