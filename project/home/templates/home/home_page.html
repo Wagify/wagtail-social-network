@@ -19,9 +19,15 @@
         </section>
     {% endif %}
 {% endfor %}
-{% with invite_friends_page=invite_friends_page.specific %}
-    <div class="float-end">
+
+<div class="float-end">
+    {% with invite_friends_page=invite_friends_page %}
         <h2><a href="{% pageurl invite_friends_page %}">{{ invite_friends_page.title }}</a></h2>
-    </div>
-{% endwith %}
+    {% endwith %}
+    <br>
+    {% with chapters_index_page=chapters_index_page %}
+        <h2><a href="{% pageurl chapters_index_page %}">{{ chapters_index_page.title }}</a></h2>
+    {% endwith %}
+</div>
+
 {% endblock content %}

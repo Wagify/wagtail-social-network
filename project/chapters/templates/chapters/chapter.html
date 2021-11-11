@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}{{ page.title }}{% endblock title %}
 
@@ -8,4 +9,16 @@
 <h1>{{ page.title }}</h1>
 
 {{ page.introduction | richtext }}
+{% if user.is_authenticated %}
+<form action="." method="post">
+    {% csrf_token %}
+    {% if member == False %}
+        <input id="membership_action" type="hidden" name="membership_action" value="join">
+        <input type="submit" class="btn btn-primary"value="{% translate 'Join group' %}">
+    {% else %}
+        <input id="membership_action" type="hidden" name="membership_action" value="leave">
+        <input type="submit" class="btn btn-secondary" value="{% translate 'Leave group' %}">
+    {% endif %}
+</form>
+{% endif %}
 {% endblock content %}
