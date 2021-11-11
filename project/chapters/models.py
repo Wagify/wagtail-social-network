@@ -14,6 +14,7 @@ from .forms import GroupMembershipForm
 
 # Create your models here.
 
+
 class GroupsIndexPage(Page):
     introduction = RichTextField()
 
@@ -41,16 +42,18 @@ class GroupsIndexPage(Page):
         """
         context = super().get_context(request)
         context[self.additional_context] = (
-            Chapter.objects.child_of(self).live().order_by(*self.context_order)
+            self.allowed_subpage_models()[0]
+            .objects.child_of(self)
+            .live()
+            .order_by(*self.context_order)
         )
         return context
 
 
-
 class ChaptersIndexPage(GroupsIndexPage):
-    subpage_types = ['chapters.Chapter']
+    subpage_types = ["chapters.Chapter"]
     additional_context = "chapters"
-    context_order = ("region","title")
+    context_order = ("region", "title")
 
 
 class Group(Page):
