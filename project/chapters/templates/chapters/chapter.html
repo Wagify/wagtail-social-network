@@ -9,6 +9,22 @@
 <h1>{{ page.title }}</h1>
 
 {{ page.introduction | richtext }}
+
+<ul class="nav flex-column">
+{% for link in page.links %}
+        {% if link.block_type == 'website_link' %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ link.value }}">Website link</a>
+        </li>
+        {% elif link.block_type == 'social_media_link' %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ link.value }}">Social Media link</a>
+        </li>
+        {% endif %}
+{% endfor %}
+</ul>
+
+
 {% if user.is_authenticated %}
 <form action="." method="post">
     {% csrf_token %}
