@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
-from wagtail.core.blocks import RichTextBlock, TextBlock
+from wagtail.core.blocks import URLBlock
 from wagtail.admin.edit_handlers import StreamFieldPanel
 
 from accounts.models import User
@@ -59,8 +59,14 @@ class ChaptersIndexPage(GroupsIndexPage):
 class Group(Page):
     introduction = RichTextField()
 
+    links =  StreamField([
+    ('social_media_link', URLBlock(required=False,form_classname="social media link")),
+    ('website_link', URLBlock(required=False,form_classname="website link"))
+    ], blank=True)
+
     content_panels = Page.content_panels + [
         FieldPanel("introduction", classname="full"),
+        FieldPanel("links", classname="full")
     ]
 
     members = models.ManyToManyField(User, blank=True)
