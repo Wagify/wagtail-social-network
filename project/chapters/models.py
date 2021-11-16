@@ -59,14 +59,20 @@ class ChaptersIndexPage(GroupsIndexPage):
 class Group(Page):
     introduction = RichTextField()
 
-    links =  StreamField([
-    ('social_media_link', URLBlock(required=False,form_classname="social media link")),
-    ('website_link', URLBlock(required=False,form_classname="website link"))
-    ], blank=True)
+    links = StreamField(
+        [
+            (
+                "social_media_link",
+                URLBlock(required=False, form_classname="social media link"),
+            ),
+            ("website_link", URLBlock(required=False, form_classname="website link")),
+        ],
+        blank=True,
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel("introduction", classname="full"),
-        FieldPanel("links", classname="full")
+        FieldPanel("links", classname="full"),
     ]
 
     members = models.ManyToManyField(User, blank=True)
