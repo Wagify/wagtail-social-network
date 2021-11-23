@@ -85,6 +85,7 @@ class Group(Page):
 
         # Check whether request user is a member of current group
         context["member"] = request.user in self.members.all()
+        context["member_count"] = self.members.count()
 
         return context
 
