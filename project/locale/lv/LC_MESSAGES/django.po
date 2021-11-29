@@ -1,0 +1,280 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-29 10:27+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#: .\accounts\forms.py:8 .\accounts\forms.py:13
+msgid "First name"
+msgstr ""
+
+#: .\accounts\forms.py:9 .\accounts\forms.py:14
+msgid "Last name"
+msgstr ""
+
+#: .\accounts\models.py:8
+msgid "first name"
+msgstr ""
+
+#: .\accounts\models.py:9
+msgid "last name"
+msgstr ""
+
+#: .\accounts\templates\registration\logged_out.html:4
+#: .\accounts\templates\registration\logged_out.html:7
+msgid "Logged out"
+msgstr ""
+
+#: .\accounts\templates\registration\logged_out.html:9
+msgid "You have successfully logged out."
+msgstr ""
+
+#: .\accounts\templates\registration\login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+
+#: .\accounts\templates\registration\login.html:15
+msgid "Please login to see this page."
+msgstr ""
+
+#: .\accounts\templates\registration\login.html:37
+msgid "Lost password?"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_complete.html:4
+#: .\accounts\templates\registration\password_reset_complete.html:8
+msgid "Password reset success"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_complete.html:10
+msgid "Your new password has been set. You may go ahead and log in now."
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_complete.html:12
+msgid "Login"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_confirm.html:4
+#: .\accounts\templates\registration\password_reset_confirm.html:7
+msgid "Enter new password"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_confirm.html:16
+#: .\core\templates\navbar.html:19
+msgid "Change password"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_confirm.html:20
+msgid ""
+"The password reset link was invalid. Please request a new password reset."
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_done.html:5
+msgid "Password reset sent"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_done.html:6
+msgid ""
+"We’ve emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_done.html:8
+msgid ""
+"If you don’t receive an email, please make sure you’ve entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_form.html:5
+msgid "Reset password"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_form.html:6
+msgid ""
+"Enter your email address below to receive instructions on how to reset your "
+"password."
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_form.html:14
+msgid "Send reset email"
+msgstr ""
+
+#: .\chapters\models.py:109
+msgid "Africa"
+msgstr ""
+
+#: .\chapters\models.py:110
+msgid "Antarctica"
+msgstr ""
+
+#: .\chapters\models.py:111
+msgid "Asia"
+msgstr ""
+
+#: .\chapters\models.py:112
+msgid "Australia"
+msgstr ""
+
+#: .\chapters\models.py:113
+msgid "Europe"
+msgstr ""
+
+#: .\chapters\models.py:114
+msgid "North America"
+msgstr ""
+
+#: .\chapters\models.py:115
+msgid "South America"
+msgstr ""
+
+#: .\chapters\templates\chapters\chapter.html:35
+msgid "Join group"
+msgstr ""
+
+#: .\chapters\templates\chapters\chapter.html:38
+msgid "Leave group"
+msgstr ""
+
+#: .\chapters\wagtail_hooks.py:12
+msgid "Chapters"
+msgstr ""
+
+#: .\core\templates\404.html:7
+msgid "Page not found"
+msgstr ""
+
+#: .\core\templates\404.html:9
+msgid "Sorry, this page could not be found."
+msgstr ""
+
+#: .\core\templates\500.html:8 .\core\templates\500.html:12
+msgid "Internal server error"
+msgstr ""
+
+#: .\core\templates\500.html:14
+msgid "Sorry, there seems to be an error. Please try again soon."
+msgstr ""
+
+#: .\core\templates\navbar.html:5
+msgid "Wagtail Social"
+msgstr ""
+
+#: .\core\templates\navbar.html:18
+msgid "Log Out"
+msgstr ""
+
+#: .\core\templates\navbar.html:25
+msgid "Log In"
+msgstr ""
+
+#: .\home\templates\home\home_page.html:10
+msgid "Welcome to Wagtail Social."
+msgstr ""
+
+#: .\home\templates\home\invite_friends.html:36
+msgid "Send Invitation Now!"
+msgstr ""
+
+#: .\home\templates\home\invite_friends.html:36
+#: .\invites\templates\invites\invite_friends.html:36
+msgid "Submit"
+msgstr ""
+
+#: .\home\templates\home\invite_friends.html:40
+#: .\home\templates\home\thankyou.html:7
+msgid "Return to home"
+msgstr ""
+
+#: .\home\templates\home\thankyou.html:6
+msgid "Thanks for inviting!"
+msgstr ""
+
+#: .\home\templates\home\welcome_page.html:6
+msgid "Visit the Wagtail website"
+msgstr ""
+
+#: .\home\templates\home\welcome_page.html:15
+msgid "View the release notes"
+msgstr ""
+
+#: .\home\templates\home\welcome_page.html:27
+msgid "Welcome to your new Wagtail site!"
+msgstr ""
+
+#: .\home\templates\home\welcome_page.html:28
+msgid ""
+"Please feel free to <a href=\"https://github.com/wagtail/wagtail/wiki/Slack"
+"\">join our community on Slack</a>, or get started with one of the links "
+"below."
+msgstr ""
+
+#: .\home\templates\home\welcome_page.html:35
+msgid "Wagtail Documentation"
+msgstr ""
+
+#: .\home\templates\home\welcome_page.html:36
+msgid "Topics, references, & how-tos"
+msgstr ""
+
+#: .\home\templates\home\welcome_page.html:42
+msgid "Tutorial"
+msgstr ""
+
+#: .\home\templates\home\welcome_page.html:43
+msgid "Build your first Wagtail site"
+msgstr ""
+
+#: .\home\templates\home\welcome_page.html:49
+msgid "Admin Interface"
+msgstr ""
+
+#: .\home\templates\home\welcome_page.html:50
+msgid "Create your superuser first!"
+msgstr ""
+
+#: .\invites\models.py:23
+msgid "Title text to use for the 'thank you' page"
+msgstr ""
+
+#: .\invites\templates\invites\invite_friends.html:40
+#: .\invites\templates\invites\thankyou.html:7
+msgid "Return to"
+msgstr ""
+
+#: .\invites\templates\invites\invite_friends.html:40
+#: .\invites\templates\invites\thankyou.html:7
+msgid "Page"
+msgstr ""
+
+#: .\search\templates\search\search.html:7
+#: .\search\templates\search\search.html:10
+#: .\search\templates\search\search.html:14
+msgid "Search"
+msgstr ""
+
+#: .\search\templates\search\search.html:30
+msgid "Previous"
+msgstr ""
+
+#: .\search\templates\search\search.html:34
+msgid "Next"
+msgstr ""
+
+#: .\search\templates\search\search.html:37
+msgid "No results found"
+msgstr ""
