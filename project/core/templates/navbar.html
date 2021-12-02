@@ -19,6 +19,16 @@
                     <li><a class="dropdown-item" href="{% url 'password_reset' %}">{% translate "Change password" %}</a></li>
                 </ul>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#languageMenu" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% translate "EN" %}
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end" id="languageMenu" aria-labelledby="languageDropdown">
+                    <li><a class="dropdown-item" href="#">{% translate "English - EN" %}</a></li>
+                    <li><a class="dropdown-item" href="#">{% translate "Hindi - HI" %}</a></li>
+                </ul>
+            </li>
             
         {% else %}
         <li class="nav-item">
