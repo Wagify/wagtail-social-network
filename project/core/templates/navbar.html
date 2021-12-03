@@ -25,7 +25,7 @@
                 <a class="nav-link dropdown-toggle" href="#languageMenu" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ LANGUAGE_CODE }}
                 </a>
-                <form class="dropdown-menu dropdown-menu-end" id="languageMenu" aria-labelledby="languageDropdown" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <form class="dropdown-menu dropdown-menu-end px-4 py-3" id="languageMenu" aria-labelledby="languageDropdown" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                     <input name="next" type="hidden" value="{% pageurl page %}">
                     <select class="form-select" name="language">
                         {% get_available_languages as LANGUAGES %}
@@ -35,8 +35,8 @@
                                 {{ language.name_local }} ({{ language.code }})
                             </option>
                         {% endfor %}
-                    </select>
-                    <input type="submit"  class="btn btn-primary" value="Go">
+                    </select><br>
+                    <input type="submit" class="btn btn-primary" value="Go">
             </form>
             </li>
             
