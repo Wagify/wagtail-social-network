@@ -18,26 +18,24 @@
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="{% url 'logout' %}">{% translate "Log Out" %}</a></li>
                     <li><a class="dropdown-item" href="{% url 'password_reset' %}">{% translate "Change password" %}</a></li>
+                    <div class="dropdown-divider"></div>
+                    <form class="px-2 dropdown-item" id="languageMenu" aria-labelledby="languageDropdown" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                        <input name="next" type="hidden" value="{% pageurl page %}">
+                        <label for="languageSelect" class="my-2">{% translate "Language" %}</label>
+                        <select id="languageSelect" class="form-select" name="language">
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" class="btn btn-primary my-2" value="Go">
+                    </form>
+
                 </ul>
-            </li>
-            <li class="nav-item dropdown">
-                {% get_current_language as LANGUAGE_CODE %}
-                <a class="nav-link dropdown-toggle" href="#languageMenu" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ LANGUAGE_CODE }}
-                </a>
-                <form class="dropdown-menu dropdown-menu-end px-4 py-3" id="languageMenu" aria-labelledby="languageDropdown" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                    <input name="next" type="hidden" value="{% pageurl page %}">
-                    <select class="form-select" name="language">
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                                {{ language.name_local }} ({{ language.code }})
-                            </option>
-                        {% endfor %}
-                    </select><br>
-                    <input type="submit" class="btn btn-primary" value="Go">
-            </form>
             </li>
             
         {% else %}
