@@ -26,6 +26,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = [
     'accounts',
     'chapters',
+    'hangouts',
     'home',
     'invites',
     'search',
