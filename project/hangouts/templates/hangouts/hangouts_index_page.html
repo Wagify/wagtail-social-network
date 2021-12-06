@@ -9,4 +9,18 @@
 
 {{ page.introduction | richtext }}
 
+<div class="row mt-5">
+    {% for hangout in hangouts %}
+    <div class="col">
+        <div class="card mb-5" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ hangout.title }}</h5>
+                {{ hangout.description | richtext }}
+                <a href="#" class="stretched-link">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock content %}

@@ -1,15 +1,35 @@
 from django.db import models
 from taggit.managers import TaggableManager
-from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
+from wagtail.core.blocks import URLBlock
 
 
 # Create your models here.
 class Hangout(Page):
     description = RichTextField()
     topics = TaggableManager()
-    url = models.URLField(blank=True, null=True)
+    url = StreamField(
+        [
+            (
+                "hangout_link",
+                URLBlock(required=False, form_classname="hangout link"),
+            ),
+        ],
+        block_counts={
+            'hangout_link': {'max_num': 1},
+        },
+        blank=True,
+    )
+    content_panels = Page.content_panels + [
+        FieldPanel("description",classname="full"),
+        FieldPanel("topics",classname="full"),
+        FieldPanel("url",classname="full")
+    ]
+    parent_page_types = [
+        "hangouts.HangoutsIndexPage",
+    ]
 
 
 class HangoutsIndexPage(Page):
@@ -23,9 +43,16 @@ class HangoutsIndexPage(Page):
         "home.HomePage",
     ]
 
+    subpage_types = ["hangouts.Hangout"]
+
     max_count = 1
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context["hangouts"] = Hangout.objects.all()
+        context["hangouts"] = (
+            self.allowed_subpage_models()[0]
+            .objects.child_of(self)
+            .live()
+            .order_by("title")
+        )
         return context
