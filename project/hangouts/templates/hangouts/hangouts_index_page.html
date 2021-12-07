@@ -15,8 +15,8 @@
         <div class="card mb-5" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{{ hangout.title }}</h5>
-                {{ hangout.description | richtext }}
-                <a href="#" class="stretched-link">Go somewhere</a>
+                {{ hangout.description | richtext | truncatewords:50 }}
+                <a href="{% pageurl hangout %}" class="stretched-link">Go somewhere</a>
             </div>
         </div>
     </div>
