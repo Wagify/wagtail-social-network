@@ -11,6 +11,7 @@ class Hangout(Page):
     description = RichTextField()
     topics = TaggableManager()
     hangouts_link = models.URLField(blank=True)
+    
     content_panels = Page.content_panels + [
         FieldPanel("description",classname="full"),
         FieldPanel("topics",classname="full"),
