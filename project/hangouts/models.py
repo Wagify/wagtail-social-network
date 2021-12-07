@@ -19,6 +19,7 @@ class Hangout(Page):
     parent_page_types = [
         "hangouts.HangoutsIndexPage",
     ]
+    subpage_types = []
 
 
 class HangoutsIndexPage(Page):
