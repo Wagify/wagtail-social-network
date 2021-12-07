@@ -10,11 +10,11 @@ from wagtail.core.blocks import URLBlock
 class Hangout(Page):
     description = RichTextField()
     topics = TaggableManager()
-    url = models.URLField(blank=True)
+    hangouts_link = models.URLField(blank=True)
     content_panels = Page.content_panels + [
         FieldPanel("description",classname="full"),
         FieldPanel("topics",classname="full"),
-        FieldPanel("url",classname="full")
+        FieldPanel("hangouts_link",classname="full")
     ]
     parent_page_types = [
         "hangouts.HangoutsIndexPage",
