@@ -10,18 +10,7 @@ from wagtail.core.blocks import URLBlock
 class Hangout(Page):
     description = RichTextField()
     topics = TaggableManager()
-    url = StreamField(
-        [
-            (
-                "hangout_link",
-                URLBlock(required=False, form_classname="hangout link"),
-            ),
-        ],
-        block_counts={
-            'hangout_link': {'max_num': 1},
-        },
-        blank=True,
-    )
+    url = models.URLField(blank=True)
     content_panels = Page.content_panels + [
         FieldPanel("description",classname="full"),
         FieldPanel("topics",classname="full"),
