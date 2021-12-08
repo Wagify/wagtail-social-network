@@ -1,16 +1,18 @@
 from django.db import models
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.fields import ParentalKey
 from taggit.managers import TaggableManager
+from taggit.models import Tag, TaggedItemBase
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.core.blocks import URLBlock
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
-from wagtail.core.blocks import URLBlock
-from modelcluster.contrib.taggit import ClusterTaggableManager
-from taggit.models import Tag, TaggedItemBase
-from modelcluster.fields import ParentalKey
 
 
 class HangoutTag(TaggedItemBase):
-    content_object = ParentalKey('hangouts.Hangout', related_name='tagged_items', on_delete=models.CASCADE)
+    content_object = ParentalKey(
+        "hangouts.Hangout", related_name="tagged_items", on_delete=models.CASCADE
+    )
 
 
 # Create your models here.
@@ -18,11 +20,11 @@ class Hangout(Page):
     description = RichTextField()
     topics = ClusterTaggableManager(through=HangoutTag, blank=True)
     link = models.URLField(blank=True)
-    
+
     content_panels = Page.content_panels + [
-        FieldPanel("description",classname="full"),
-        FieldPanel("topics",classname="full"),
-        FieldPanel("link",classname="full")
+        FieldPanel("description", classname="full"),
+        FieldPanel("topics", classname="full"),
+        FieldPanel("link", classname="full"),
     ]
     parent_page_types = [
         "hangouts.HangoutsIndexPage",
