@@ -9,6 +9,14 @@
 
 {{ page.introduction | richtext }}
 
+{% if topic %}
+    <div class="row">
+        <div class="col-md-12">
+            <p>Viewing all hangouts of topic <span class="btn btn-primary rounded-pill btn-sm">{{ topic }}</span></p>
+        </div>
+    </div>
+{% endif %}
+
 <div class="row mt-5">
     {% for hangout in hangouts %}
     <div class="col">

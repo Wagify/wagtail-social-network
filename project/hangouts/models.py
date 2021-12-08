@@ -1,12 +1,17 @@
 from django.db import models
+from django.shortcuts import redirect
+
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
+
 from taggit.managers import TaggableManager
 from taggit.models import Tag, TaggedItemBase
+
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.core.blocks import URLBlock
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 
 class HangoutTag(TaggedItemBase):
@@ -38,14 +43,14 @@ class Hangout(Page):
         for topic in topics:
             topic.url = '/' + '/'.join(s.strip('/') for s in [
                 self.get_parent().url,
-                'tags',
+                'topics',
                 topic.slug
             ])
         return topics
 
 
 
-class HangoutsIndexPage(Page):
+class HangoutsIndexPage(RoutablePageMixin, Page):
     introduction = RichTextField()
 
     content_panels = Page.content_panels + [
@@ -66,6 +71,31 @@ class HangoutsIndexPage(Page):
             self.allowed_subpage_models()[0]
             .objects.child_of(self)
             .live()
-            .order_by("title")
+            .order_by('-last_published_at')
         )
         return context
+
+    @route(r'^topics/$', name='topic_archive')
+    @route(r'^topics/([\w-]+)/$', name='topic_archive')
+    def tag_archive(self, request, topic=None):
+
+        try:
+            topic = Tag.objects.get(slug=topic)
+        except Tag.DoesNotExist:
+            if topic:
+                msg = 'There are no hangouts in the topic "{}"'.format(topic)
+                messages.add_message(request, messages.INFO, msg)
+            return redirect(self.url)
+
+        hangouts = self.get_hangouts(topic=topic)
+
+        return self.render(request, context_overrides={
+            'topic': topic,
+            'hangouts': hangouts
+        })
+
+    def get_hangouts(self, topic=None):
+        hangouts = Hangout.objects.live().descendant_of(self).order_by('-last_published_at')
+        if topic:
+            hangouts = hangouts.filter(topics=topic)
+        return hangouts
