@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}{{ page.title }}{% endblock title %}
 
@@ -8,7 +9,7 @@
 <h1>{{ page.title }}</h1>
 
 {% if page.get_topics %}
-    Topics:<br />
+    {% translate 'Topics:' %}<br />
     {% for topic in page.get_topics  %}
         <a href="{{ topic.url }}" class="btn btn-primary rounded-pill btn-sm">{{ topic }}</a>
     {% endfor %}

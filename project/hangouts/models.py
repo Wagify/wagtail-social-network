@@ -89,3 +89,10 @@ class HangoutsIndexPage(RoutablePageMixin, Page):
         if topic:
             hangouts = hangouts.filter(topics=topic)
         return hangouts
+
+    def get_child_topics(self):
+        topics = []
+        for hangout in self.get_hangouts():
+            topics += hangout.get_topics
+        topics = sorted(set(topics))
+        return topics

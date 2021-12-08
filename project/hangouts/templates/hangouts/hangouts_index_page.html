@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}{{ page.title }}{% endblock title %}
 
@@ -12,9 +13,20 @@
 {% if topic %}
     <div class="row">
         <div class="col-md-12">
-            <p>Viewing all hangouts of topic <span class="btn btn-primary rounded-pill btn-sm">{{ topic }}</span></p>
+            {% translate 'Viewing all hangouts of topic' %} <span class="btn btn-primary rounded-pill btn-sm">{{ topic }}</span>
+            <a href="{% pageurl page %}" class="btn bg-transparent rounded-pill btn-sm">
+              x {% translate 'Clear' %}
+            </a>
         </div>
     </div>
+{% endif %}
+
+{% if page.get_child_topics %}
+    {% translate 'Topics:' %}<br />
+        {% for topic in page.get_child_topics %}
+            <a href="{{ topic.url }}" class="btn btn-primary rounded-pill btn-sm">{{ topic }}</a>
+        {% endfor %}
+    </ul>
 {% endif %}
 
 <div class="row mt-5">
