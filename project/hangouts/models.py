@@ -1,17 +1,14 @@
 from django.db import models
 from django.shortcuts import redirect
-
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
-
 from taggit.managers import TaggableManager
 from taggit.models import Tag, TaggedItemBase
-
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.blocks import URLBlock
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
-from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 
 class HangoutTag(TaggedItemBase):
@@ -41,13 +38,10 @@ class Hangout(Page):
 
         topics = self.topics.all()
         for topic in topics:
-            topic.url = '/' + '/'.join(s.strip('/') for s in [
-                self.get_parent().url,
-                'topics',
-                topic.slug
-            ])
+            topic.url = "/" + "/".join(
+                s.strip("/") for s in [self.get_parent().url, "topics", topic.slug]
+            )
         return topics
-
 
 
 class HangoutsIndexPage(RoutablePageMixin, Page):
@@ -67,16 +61,11 @@ class HangoutsIndexPage(RoutablePageMixin, Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context["hangouts"] = (
-            self.allowed_subpage_models()[0]
-            .objects.child_of(self)
-            .live()
-            .order_by('-last_published_at')
-        )
+        context["hangouts"] = self.get_hangouts()
         return context
 
-    @route(r'^topics/$', name='topic_archive')
-    @route(r'^topics/([\w-]+)/$', name='topic_archive')
+    @route(r"^topics/$", name="topic_archive")
+    @route(r"^topics/([\w-]+)/$", name="topic_archive")
     def tag_archive(self, request, topic=None):
 
         try:
@@ -89,13 +78,14 @@ class HangoutsIndexPage(RoutablePageMixin, Page):
 
         hangouts = self.get_hangouts(topic=topic)
 
-        return self.render(request, context_overrides={
-            'topic': topic,
-            'hangouts': hangouts
-        })
+        return self.render(
+            request, context_overrides={"topic": topic, "hangouts": hangouts}
+        )
 
     def get_hangouts(self, topic=None):
-        hangouts = Hangout.objects.live().descendant_of(self).order_by('-last_published_at')
+        hangouts = (
+            Hangout.objects.live().descendant_of(self).order_by("-last_published_at")
+        )
         if topic:
             hangouts = hangouts.filter(topics=topic)
         return hangouts
