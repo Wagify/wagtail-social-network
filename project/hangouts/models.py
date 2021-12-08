@@ -31,6 +31,19 @@ class Hangout(Page):
     ]
     subpage_types = []
 
+    @property
+    def get_topics(self):
+
+        topics = self.topics.all()
+        for topic in topics:
+            topic.url = '/' + '/'.join(s.strip('/') for s in [
+                self.get_parent().url,
+                'tags',
+                topic.slug
+            ])
+        return topics
+
+
 
 class HangoutsIndexPage(Page):
     introduction = RichTextField()
