@@ -10,12 +10,17 @@ from wagtail.core.blocks import URLBlock
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 
-def topics_with_url(topics,parent_url):
+
+def topics_with_url(topics, parent_url):
+    """
+    Adding a URL to access Hangouts objects of the same tag
+    """
     for topic in topics:
         topic.url = "/" + "/".join(
             s.strip("/") for s in [parent_url, "topics", topic.slug]
         )
     return topics
+
 
 class HangoutTag(TaggedItemBase):
     content_object = ParentalKey(
@@ -43,7 +48,7 @@ class Hangout(Page):
     def get_topics(self):
         topics = self.topics.all()
 
-        return topics_with_url(topics,self.get_parent().url)
+        return topics_with_url(topics, self.get_parent().url)
 
 
 class HangoutsIndexPage(RoutablePageMixin, Page):
@@ -94,4 +99,4 @@ class HangoutsIndexPage(RoutablePageMixin, Page):
 
     def get_child_topics(self):
         topics = Tag.objects.filter(hangout__in=self.get_hangouts()).distinct()
-        return topics_with_url(topics,self.url)
+        return topics_with_url(topics, self.url)
