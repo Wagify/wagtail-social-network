@@ -10,6 +10,12 @@ from wagtail.core.blocks import URLBlock
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 
+def topics_with_url(topics,parent_url):
+    for topic in topics:
+        topic.url = "/" + "/".join(
+            s.strip("/") for s in [parent_url, "topics", topic.slug]
+        )
+    return topics
 
 class HangoutTag(TaggedItemBase):
     content_object = ParentalKey(
@@ -35,13 +41,9 @@ class Hangout(Page):
 
     @property
     def get_topics(self):
-
         topics = self.topics.all()
-        for topic in topics:
-            topic.url = "/" + "/".join(
-                s.strip("/") for s in [self.get_parent().url, "topics", topic.slug]
-            )
-        return topics
+
+        return topics_with_url(topics,self.get_parent().url)
 
 
 class HangoutsIndexPage(RoutablePageMixin, Page):
@@ -91,8 +93,5 @@ class HangoutsIndexPage(RoutablePageMixin, Page):
         return hangouts
 
     def get_child_topics(self):
-        topics = []
-        for hangout in self.get_hangouts():
-            topics += hangout.get_topics
-        topics = sorted(set(topics))
-        return topics
+        topics = Tag.objects.filter(hangout__in=self.get_hangouts()).distinct()
+        return topics_with_url(topics,self.url)
