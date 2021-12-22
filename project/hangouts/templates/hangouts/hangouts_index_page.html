@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ page.title }}{% endblock title %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+<h1>{{ page.title }}</h1>
+
+{{ page.introduction | richtext }}
+
+{% if topic %}
+    <div class="row">
+        <div class="col-md-12">
+            {% translate 'Viewing all hangouts of topic' %} <span class="btn btn-primary rounded-pill btn-sm">{{ topic }}</span>
+            <a href="{% pageurl page %}" class="btn bg-transparent rounded-pill btn-sm">
+              x {% translate 'Clear' %}
+            </a>
+        </div>
+    </div>
+{% endif %}
+
+{% if page.get_child_topics %}
+    {% translate 'Topics:' %}<br />
+        {% for topic in page.get_child_topics %}
+            <a href="{{ topic.url }}" class="btn btn-primary rounded-pill btn-sm">{{ topic }}</a>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<div class="row mt-5">
+    {% for hangout in hangouts %}
+    <div class="col">
+        <div class="card mb-5" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ hangout.title }}</h5>
+                {{ hangout.description | richtext | truncatewords:50 }}
+                <a href="{% pageurl hangout %}" class="stretched-link">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

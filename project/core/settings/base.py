@@ -26,6 +26,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = [
     'accounts',
     'chapters',
+    'hangouts',
     'home',
     'invites',
     'search',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.core',
     'wagtail.contrib.modeladmin',
+    "wagtail.contrib.routable_page",
 
     'modelcluster',
     'taggit',

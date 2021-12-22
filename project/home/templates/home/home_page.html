@@ -20,14 +20,14 @@
     {% endif %}
 {% endfor %}
 
-<div class="float-end">
-    {% with invite_friends_page=invite_friends_page %}
+<div>
+    {% if invite_friends_page %}
         <h2><a href="{% pageurl invite_friends_page %}">{{ invite_friends_page.title }}</a></h2>
-    {% endwith %}
+    {% endif %}
     <br>
-    {% with chapters_index_page=chapters_index_page %}
+    {% if chapters_index_page %}
         <h2><a href="{% pageurl chapters_index_page %}">{{ chapters_index_page.title }}</a></h2>
-    {% endwith %}
+    {% endif %}
 </div>
 
 {% endblock content %}
